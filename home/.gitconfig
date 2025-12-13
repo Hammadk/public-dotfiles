@@ -48,4 +48,4 @@
 [include]
 	path = /Users/hammad/.config/dev/gitconfig
 [commit]
-	gpgsign = true
+	gpgsign = false
