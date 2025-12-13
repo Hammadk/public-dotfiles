@@ -52,11 +52,11 @@ Keyboard:
 * Key repeat rate: fastest
 * Delay until repeat: Slowest
 * Modifer: Capslock -> No action
-* Automator: Cmd + shift + 1 -> GPT
-* Automator: Cmd + shift + 2 -> Code Editor
-* Automator: Cmd + shift + 3 -> Notes
+* Shortcuts: Cmd + shift + 1 -> GPT
+* Shortcuts: Cmd + shift + 2 -> Code Editor
+* Shortcuts: Cmd + shift + 3 -> Notes
 * Disable default Cmd + shift + 3 -> screenshot shortcut
-* option + space -> Iterm
+* ctrl + space -> Ghostty
 ```
 
 Font installation for powerline:

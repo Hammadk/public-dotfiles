@@ -1,9 +1,8 @@
--- Open Automator
--- Select Quick action
--- Set 1) "Workflow receives current" to no input, and 2) "in" to any application.
--- In the search bar (left), type "Run AppleScript".
--- Drag the Run AppleScript action into the main workflow area.
--- Type the following into Automator
+-- Open Shortcuts app
+-- Click the + icon (or "New Shortcut") in the toolbar.
+-- In the search bar on the right, type "Run AppleScript".
+-- Name this shortcut
+-- Assign keyboard shortcut
 
 tell application "Google Chrome"
 	activate
