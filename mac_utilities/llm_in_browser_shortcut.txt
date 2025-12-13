@@ -1,0 +1,41 @@
+-- Open Automator
+-- Select Quick action
+-- Set 1) "Workflow receives current" to no input, and 2) "in" to any application.
+-- In the search bar (left), type "Run AppleScript".
+-- Drag the Run AppleScript action into the main workflow area.
+-- Type the following into Automator
+
+tell application "Google Chrome"
+	activate
+	set theURL to "https://gemini.google.com/app"
+	set found to false
+	
+	-- Check if Chrome has any windows open
+	if (count windows) is 0 then
+		make new window
+		set URL of active tab of front window to theURL
+		set found to true
+	else
+		-- Loop through windows to find the tab
+		repeat with w in windows
+			set i to 1
+			repeat with t in tabs of w
+				if URL of t starts with theURL then
+					set active tab index of w to i
+					set index of w to 1 -- Bring this window to the front
+					set found to true
+					exit repeat
+				end if
+				set i to i + 1
+			end repeat
+			if found then exit repeat
+		end repeat
+	end if
+	
+	-- If not found, create a new tab in the front window
+	if not found then
+		tell window 1
+			make new tab with properties {URL:theURL}
+		end tell
+	end if
+end tell
