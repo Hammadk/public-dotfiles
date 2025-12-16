@@ -16,6 +16,15 @@ Once `bootstrap.sh` is run, you'll see output that looks like:
 -e ~/.tmux-mac.conf is symlinked to your dotfiles.
 ```
 
+Shell requirements:
+``` sh
+# Install OhmyZsh: https://github.com/ohmyzsh/ohmyzsh
+
+zsh-autosuggestions      # Load this first (Ghost text)
+zsh-autocomplete         # Load this second (The menu)
+zsh-syntax-highlighting
+```
+
 Mac Requirement:
 
 ``` sh
