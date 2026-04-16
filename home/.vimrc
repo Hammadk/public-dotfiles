@@ -2,7 +2,6 @@
 " :PlugInstall
 
 " Dependencies:
-" brew install fzf, for fuzzy file search
 " brew install ripgrep, for fast search
 
 call plug#begin('~/.vim/plugged')
@@ -21,8 +20,7 @@ Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'thoughtbot/vim-rspec'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 
 " Git and Github integrations. Rhubarb is needed for :GBrowse
@@ -148,10 +146,9 @@ map <leader>e :call RunFile(expand("%"))<cr>
 " NerdTree Toggle mode
 noremap <leader>n :NERDTreeToggle<CR>
 
-" Use ripgrep for :grep and fzf.vim's :Rg for interactive search
+" Use ripgrep for :grep
 set grepprg=rg\ --vimgrep
 nnoremap <leader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-nnoremap <leader>G :Rg<SPACE>
 
 " Change the default behaviour of the quickfix window so items are opened in a
 " new tab unless they are already opened in a tab
@@ -168,9 +165,9 @@ ca t tabnew
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Browse open buffers
-nmap <leader>b :Buffers<CR>
-nmap <leader>f :Files<CR>
-nnoremap <leader>r :Tags <c-r><c-w><CR>
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>f :CtrlP<CR>
+nnoremap <leader>r :CtrlPTag<CR>
 
 "Have leader D just delete the line
 nmap <leader>d "_d

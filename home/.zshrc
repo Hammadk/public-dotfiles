@@ -42,7 +42,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(atuin init zsh)"
 
 eval "$(ruby ~/.local/try.rb init ~/src/tries)"

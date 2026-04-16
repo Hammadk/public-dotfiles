@@ -36,8 +36,6 @@ brew install reattach-to-user-namespace # needed for Tmux
 # Dependency for AG
 brew install the_silver_searcher
 
-# Fuzzy search for vim
-brew install fzf
 ```
 
 Mac nice-to-haves:

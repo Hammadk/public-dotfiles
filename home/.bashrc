@@ -166,7 +166,6 @@ git-cp() {
     echo "Files copied. Don't forget to commit the changes!"
 }
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
