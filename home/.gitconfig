@@ -15,6 +15,7 @@
   co="checkout"
   com="checkout main"
   ci="commit -v"
+  ic="commit -v"
   cp="cherry-pick -n"
   lg=log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   g=log --date-order --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset' --graph
@@ -29,6 +30,8 @@
   ss="status --short"
 	glog = log --grep
 	search = log -S
+	amend = commit --amend --no-edit
+	root = rev-parse --show-toplevel
 [push]
   default = upstream
 [core]
@@ -45,7 +48,12 @@
 [init]
 	templatedir = ~/.git_template
 	defaultBranch = main
-[include]
-	path = /Users/hammad/.config/dev/gitconfig
 [commit]
 	gpgsign = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[include]
+	path = ~/.gitconfig.private
