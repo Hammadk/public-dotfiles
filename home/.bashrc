@@ -132,13 +132,9 @@ if [ $OSTYPE == 'linux-gnu' ]; then
 fi
 
 if [[ $OSTYPE = darwin* ]]; then
-  if [ -f /opt/dev/dev.sh ]; then
-    source /opt/dev/dev.sh
-  else
-    source /usr/local/share/chruby/chruby.sh
-    source /usr/local/share/chruby/auto.sh
-    source ~/.autoenv/activate.sh
-  fi
+  [ -f /usr/local/share/chruby/chruby.sh ] && source /usr/local/share/chruby/chruby.sh
+  [ -f /usr/local/share/chruby/auto.sh ] && source /usr/local/share/chruby/auto.sh
+  [ -f ~/.autoenv/activate.sh ] && source ~/.autoenv/activate.sh
 fi
 
 export PATH="$HOME/.yarn/bin:$PATH"
@@ -159,6 +155,19 @@ if [ -f '/Users/Hammad/google-cloud-sdk/path.bash.inc' ]; then source '/Users/Ha
 if [ -f '/Users/Hammad/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/Hammad/google-cloud-sdk/completion.bash.inc'; fi
 alias ctags='/usr/local/bin/ctags'
 
-[[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }
-
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+git-cp() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: git-cp <source> <destination>"
+        return 1
+    fi
+    git mv "$1" "$2" && cp "$2" "$1" && git add "$1"
+    echo "Files copied. Don't forget to commit the changes!"
+}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+[[ -f ~/.bashrc.private ]] && source ~/.bashrc.private
