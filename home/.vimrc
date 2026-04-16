@@ -25,9 +25,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 
-" Requires calling :Copilot
-Plug 'github/copilot.vim'
-
 " Git and Github integrations. Rhubarb is needed for :GBrowse
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -113,6 +110,12 @@ endif
 
 " hack to fix broken 'run focused test' since https://github.com/jgdavey/vim-turbux/pull/36
 let g:turbux_test_type = ''
+
+" RSpec.vim mappings
+noremap <leader>T :call RunCurrentSpecFile()<CR>
+noremap <leader>t :call RunNearestSpec()<CR>
+
+nnoremap <C--> <C-o>
 
 " Airline config
 if has("mac")
@@ -205,6 +208,11 @@ nmap <leader>d "_d
 
 " Make Y behave like other capitals
 map Y y$
+
+" Auto-reload changed files
+set autoread
+au FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+au FocusLost,WinLeave * if &autowrite | silent! wall | endif
 
 " Remove the vertical border since we have the number column
 set fillchars+=vert:\│
