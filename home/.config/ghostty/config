@@ -1,0 +1,16 @@
+# Ghostty Configuration
+# https://ghostty.org/docs/config
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 13
+font-thicken = true
+font-thicken-strength = 200
+
+# Line spacing — reduces eye strain
+adjust-cell-height = 4
+
+# Ensure minimum contrast between fg/bg
+minimum-contrast = 1.1
+
+auto-update = "off"
