@@ -3,7 +3,7 @@
 
 " Dependencies:
 " brew install fzf, for fuzzy file search
-" brew install the_silver_searcher, a faster searcher
+" brew install ripgrep, for fast search
 
 call plug#begin('~/.vim/plugged')
 
@@ -42,20 +42,13 @@ Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 " Initialize plugin system
 call plug#end()
 
-set encoding=utf8
 set nobackup
 set nowritebackup
 set noswapfile
-set t_vb=                  " Disable visual bell in Vim
-set ruler                  " Show cursor position at all times
-set showcmd                " Display incomplete commands
 set laststatus=2           " Always display the status line
 set autowrite              " Automatically write before running commands
 set clipboard=unnamed      " Share the clipboard with OS
-set autoindent             " Copy indent from current line
-set wildmenu               " Enhanced completion in command-line
 set wildmode=list:longest  " When more than one match, list all matches and complete till longest common string
-set backspace=2            " Backspace deletes like most programs in insert mode
 set nojoinspaces           " Use one space, not two, after punctuation.
 set showmatch              " When a bracket is inserted, briefly jump to matching one
 set textwidth=80           " Break long strings into multiple lines
@@ -70,8 +63,6 @@ set shiftround
 set expandtab
 
 " Color scheme settings.
-syntax on
-
 if has("mac")
   colorscheme material
 endif
@@ -82,13 +73,7 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Tame searching / moving
 set ignorecase
 set smartcase
-set incsearch
 set hlsearch
-
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-endif
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -163,26 +148,10 @@ map <leader>e :call RunFile(expand("%"))<cr>
 " NerdTree Toggle mode
 noremap <leader>n :NERDTreeToggle<CR>
 
-" Faster search
-" https://robots.thoughtbot.com/faster-grepping-in-vim
-" https://github.com/ggreer/the_silver_searcher
-
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " bind Leader g to grep word under cursor
-  nnoremap <leader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap <leader>G :Ag<SPACE>
-  endif
-else
-  if has("mac")
-    echo "Silver searcher not found, please run: brew install the_silver_searcher"
-  endif
-endif
+" Use ripgrep for :grep and fzf.vim's :Rg for interactive search
+set grepprg=rg\ --vimgrep
+nnoremap <leader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <leader>G :Rg<SPACE>
 
 " Change the default behaviour of the quickfix window so items are opened in a
 " new tab unless they are already opened in a tab
