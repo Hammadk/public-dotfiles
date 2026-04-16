@@ -1,11 +1,13 @@
-This is a copy of Hammad's dotfiles. Running `home/bootstrap.sh` creates new symlinks in the `$HOME` folder for all files and folders in `/home`. Files and folders that you wish to symlink must start with a `.`
+This is a copy of Hammad's public dotfiles. Running `bootstrap.sh` creates new symlinks in the `$HOME` folder for all files and folders in `/home`. Files and folders that you wish to symlink must start with a `.`
+
+Work-specific and machine-specific config lives in a separate private repo (`private-dotfiles`). The public dotfiles conditionally load private overrides (e.g. `~/.bashrc.private`, `~/.gitconfig.private`) when they exist.
 
 ### Usage:
 
 ``` sh
 cd ~
-git clone https://github.com/Hammadk/dotFiles.git
-cd dotFiles
+git clone https://github.com/Hammadk/public-dotfiles.git
+cd public-dotfiles
 sh bootstrap.sh
 ```
 
@@ -66,6 +68,11 @@ Keyboard:
 * Shortcuts: Cmd + shift + 3 -> Notes
 * Disable default Cmd + shift + 3 -> screenshot shortcut
 * ctrl + space -> Ghostty
+```
+
+Font installation:
+```
+brew install --cask font-jetbrains-mono-nerd-font
 ```
 
 Font installation for powerline:
