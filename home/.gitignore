@@ -52,4 +52,5 @@ staticfiles
 .env
 .byebug_history
 .hammad_todo.md
+**/.pi/todos
 .private_env
