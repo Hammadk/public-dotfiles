@@ -12,19 +12,21 @@ link_target() {
   local target=$2
   local label=$3
 
-  if [[ -h $target && ($(readlink $target) == $path)]]; then
-    echo -e "\x1B[90m$label is symlinked to your dotfiles.\x1B[39m"
+  if [[ -h $target && ($(readlink $target) == $path) ]]; then
+    printf '\033[90m%s is symlinked to your dotfiles.\033[39m\n' "$label"
   elif [[ -f $target && $(md5 $path) == $(md5 $target) ]]; then
-    echo -e "\x1B[32m$label exists and was identical to your dotfile.  Overriding with symlink.\x1B[39m"
+    printf '\033[32m%s exists and was identical to your dotfile. Overriding with symlink.\033[39m\n' "$label"
     symlink $path $target
   elif [[ -a $target ]]; then
-    read -p "\x1B[33m$label exists and differs from your dotfile. Override?  [yn]\x1B[39m" -n 1
+    printf '\033[33m%s exists and differs from your dotfile. Override? [yn]\033[39m ' "$label"
+    read -n 1 REPLY
+    printf '\n'
 
     if [[ $REPLY =~ [yY]* ]]; then
       symlink $path $target
     fi
   else
-    echo -e "\x1B[32m$label does not exist. Symlinking to dotfile.\x1B[39m"
+    printf '\033[32m%s does not exist. Symlinking to dotfile.\033[39m\n' "$label"
     symlink $path $target
   fi
 }
