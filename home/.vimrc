@@ -23,6 +23,10 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 
+" Markdown support
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+
 " Git and Github integrations. Rhubarb is needed for :GBrowse
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -82,6 +86,10 @@ autocmd BufWinLeave * call clearmatches()
 
 " Ale config
 highlight ALEWarning ctermbg=DarkGray
+
+" Markdown config (preservim/vim-markdown)
+let g:vim_markdown_folding_level = 3
+let g:vim_markdown_folding_style_pythonic = 1
 
 " Turbux config
 if filereadable("dev.yml")
