@@ -42,8 +42,11 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
-eval "$(atuin init zsh)"
+eval "$(try init)"
+eval "$(mise activate zsh)"
 
-eval "$(ruby ~/.local/try.rb init ~/src/tries)"
+# Added by Antigravity
+export PATH="/Users/hammad/.antigravity/antigravity/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 
 [[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
