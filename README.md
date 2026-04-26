@@ -1,6 +1,9 @@
-This is a copy of Hammad's public dotfiles. Running `bootstrap.sh` creates new symlinks in the `$HOME` folder for all files and folders in `/home`. Files and folders that you wish to symlink must start with a `.`
+This is a copy of Hammad's public dotfiles. Running `bootstrap.sh` symlinks
+files from this repo into `$HOME`.
 
-Work-specific and machine-specific config lives in a separate private repo (`private-dotfiles`). The public dotfiles conditionally load private overrides (e.g. `~/.bashrc.private`, `~/.gitconfig.private`) when they exist.
+Work-specific and machine-specific config lives in a separate private repo
+(`private-dotfiles`). The public dotfiles conditionally load private overrides
+(e.g. `~/.bashrc.private`, `~/.gitconfig.private`) when they exist.
 
 ### Usage:
 
@@ -8,15 +11,14 @@ Work-specific and machine-specific config lives in a separate private repo (`pri
 cd ~
 git clone https://github.com/Hammadk/public-dotfiles.git
 cd public-dotfiles
-sh bootstrap.sh
+bash bootstrap.sh
 ```
 
-Once `bootstrap.sh` is run, you'll see output that looks like:
-``` sh
--e ~/.inputrc does not exist. Symlinking to dotfile.
--e ~/.irbrc is symlinked to your dotfiles.
--e ~/.tmux-mac.conf is symlinked to your dotfiles.
-```
+### Layout:
+
+- `to-replace/<name>` → symlinked to `~/<name>` (atomic; prompts on conflict).
+- `to-merge/<name>/*` → children symlinked into a destination mapped in `bootstrap.sh`'s `MERGE_DIRS` (non-destructive; leaves siblings alone).
+- `ALIASES` in `bootstrap.sh` → one repo file → one `$HOME` path.
 
 Shell requirements:
 ``` sh
@@ -35,13 +37,17 @@ brew install reattach-to-user-namespace # needed for Tmux
 
 # Dependency for AG
 brew install the_silver_searcher
-
 ```
 
 Mac nice-to-haves:
 ```
 1. Install Terminal themes in dotfiles/themes
 2. Install Fonts from dotfiles/fonts
+```
+
+Ghostty font (matches `to-merge/ghostty/config`):
+``` sh
+brew install --cask font-jetbrains-mono-nerd-font
 ```
 
 Vim installation:
@@ -68,11 +74,6 @@ Keyboard:
 * ctrl + space -> Ghostty
 ```
 
-Font installation:
-```
-brew install --cask font-jetbrains-mono-nerd-font
-```
-
 Font installation for powerline:
 ```
 You need to get fonts modified for powerline. Ones that are compatible with
@@ -82,4 +83,3 @@ vim-airline:
 2. Install all fonts.
 3. Configure your Terminal or iTerm2 to use the installed Powerline font. iTerm2 -> Preferences -> Profiles -> Text
 ```
-
