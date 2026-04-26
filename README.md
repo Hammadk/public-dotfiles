@@ -1,8 +1,7 @@
 This is a copy of Hammad's public dotfiles. Running `bootstrap.sh` symlinks
 files from this repo into `$HOME`.
 
-Work-specific and machine-specific config lives in a separate private repo
-(`private-dotfiles`). The public dotfiles conditionally load private overrides
+Private config lives in a separate private repo. The public dotfiles conditionally load private overrides
 (e.g. `~/.bashrc.private`, `~/.gitconfig.private`) when they exist.
 
 ### Usage:
