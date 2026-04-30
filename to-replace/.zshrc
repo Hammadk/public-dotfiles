@@ -42,8 +42,13 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
-eval "$(try init)"
-eval "$(mise activate zsh)"
+if command -v try >/dev/null 2>&1; then
+  eval "$(try init)"
+fi
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 
 # Added by Antigravity
 export PATH="/Users/hammad/.antigravity/antigravity/bin:$PATH"
